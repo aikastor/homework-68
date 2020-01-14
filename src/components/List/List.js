@@ -8,18 +8,16 @@ const List = (props) => {
           <ListGroupItem key={id} style={{cursor: 'pointer'}}>
             <Row xs="2">
               <Col>
-                    <span onClick={()=>props.onClick(id)}
-                          style={{textDecoration: props.tasks[id].completed ? "line-through" : "" }}>
-              {props.tasks[id].text}
-              </span>
+                <span onClick={()=>props.onClick(id)}
+                      style={{textDecoration: props.tasks[id].completed ? "line-through" : "" }}>
+                      {props.tasks[id].text}
+                </span>
               </Col>
               <Col>
                 <Button onClick={()=>props.deleteTask(id)}>Delete</Button>
               </Col>
-
             </Row>
           </ListGroupItem>
-
         ))}
       </ListGroup>
   );
