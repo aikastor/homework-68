@@ -1,17 +1,25 @@
 import React from 'react';
-import {Button, ListGroup, ListGroupItem} from 'reactstrap';
+import {Button, Col, ListGroup, ListGroupItem, Row} from 'reactstrap';
 
 const List = (props) => {
   return (
       <ListGroup>
         {Object.keys(props.tasks).map(id=> (
-        <ListGroupItem key={id} >
-          <span onClick={()=>props.onClick(id)}
-                style={{textDecoration: props.tasks[id].completed ? "line-through" : "" }}>
-            {props.tasks[id].text}
-          </span>
-          <Button onClick={()=>props.deleteTask(id)}>Delete</Button>
+          <ListGroupItem key={id} >
+            <Row xs="2">
+              <Col>
+                    <span onClick={()=>props.onClick(id)}
+                          style={{textDecoration: props.tasks[id].completed ? "line-through" : "" }}>
+              {props.tasks[id].text}
+              </span>
+              </Col>
+              <Col>
+                <Button onClick={()=>props.deleteTask(id)}>Delete</Button>
+              </Col>
+
+            </Row>
           </ListGroupItem>
+
         ))}
       </ListGroup>
   );
