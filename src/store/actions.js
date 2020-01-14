@@ -24,7 +24,7 @@ export const getData = () => {
 export const addTodo = (task)=> {
   return dispatch => {
     dispatch(fetchingData());
-    axiosApi.post('/tasks.json', task).then(response => {
+    axiosApi.post('/tasks.json', task).then(() => {
       dispatch(getData())
     }, e=> {throw(e)})
   }
@@ -32,7 +32,7 @@ export const addTodo = (task)=> {
 export const markDone = (id) => {
   return dispatch => {
     dispatch(fetchingData());
-    axiosApi.patch(`/tasks/${id}.json`, {completed: true}).then(response => {
+    axiosApi.patch(`/tasks/${id}.json`, {completed: true}).then(() => {
       dispatch(getData())
     }, e=> {throw(e)})
   }
@@ -40,7 +40,7 @@ export const markDone = (id) => {
 export const deleteTask = (id)=> {
   return dispatch => {
     dispatch (fetchingData());
-    axiosApi.delete(`/tasks/${id}.json`).then(response=> {
+    axiosApi.delete(`/tasks/${id}.json`).then(()=> {
       dispatch(getData())
     }, e=> {throw(e)})
   }

@@ -24,13 +24,11 @@ class App extends Component {
     } else {
       alert('Enter info!')
     }
-
   };
 
   render() {
     return (
         <Container>
-
           <Form onSubmit={(e)=>this.onSubmit(e)}>
             <Row form>
               <Col md={6}>
