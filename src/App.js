@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import List from "./components/List/List";
-import {addTodo, getData} from "./store/actions";
+import {addTodo, deleteTask, getData, markDone} from "./store/actions";
 import {connect} from "react-redux";
 
 class App extends Component {
   state = {
     currentTask: '',
-    formValid: false,
   };
   componentDidMount() {
     this.props.getData();
@@ -18,8 +17,14 @@ class App extends Component {
   };
   onSubmit = e=>{
     e.preventDefault();
-    this.props.submitTask({text:this.state.currentTask, completed: false})
+    if(this.state.currentTask.trim()) {
+      this.props.submitTask({text:this.state.currentTask, completed: false})
+    } else {
+      alert('Enter info!')
+    }
+
   };
+
   render() {
     return (
         <Container>
@@ -33,22 +38,26 @@ class App extends Component {
               <Button>Submit</Button>
             </FormGroup>
           </Form>
-            <List tasks={this.props.tasks}
-                  markDone={this.props.markDone}/>
+          <List tasks={this.props.tasks}
+                onClick={this.props.markDone}
+                deleteTask={this.props.deleteTask}
+          />
         </Container>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks
+    tasks: state.tasks,
+    loading: state.loading,
   }
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getData : ()=>dispatch(getData()),
-    submitTask :(task)=>dispatch(addTodo(task)),
-    markDone : ()=> dispatch(),
+    getData : ()=> dispatch(getData()),
+    submitTask: (task)=> dispatch(addTodo(task)),
+    markDone: (id)=> dispatch(markDone(id)),
+    deleteTask: (id)=> dispatch(deleteTask(id))
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,4 +1,4 @@
-import {ADD_TASK, DELETE_TASK, RECEIVE_DATA, REQUEST_DATA, MARK_COMPLETED} from "./actions";
+import { RECEIVE_DATA, REQUEST_DATA} from "./actions";
 
 const initialState = {
   tasks: [],
