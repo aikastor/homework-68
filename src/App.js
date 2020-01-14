@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     currentTask: '',
   };
+
   componentDidMount() {
     this.props.getData();
   }

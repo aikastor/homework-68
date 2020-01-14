@@ -5,7 +5,7 @@ const List = (props) => {
   return (
       <ListGroup>
         {Object.keys(props.tasks).map(id=> (
-          <ListGroupItem key={id} >
+          <ListGroupItem key={id} style={{cursor: 'pointer'}}>
             <Row xs="2">
               <Col>
                     <span onClick={()=>props.onClick(id)}
